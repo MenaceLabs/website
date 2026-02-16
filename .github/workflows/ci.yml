@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   build:
     uses: MenaceLabs/shared-workflows/.github/workflows/build-and-test.yml@main
