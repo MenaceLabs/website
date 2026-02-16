@@ -1,0 +1,73 @@
+.activityBar {
+  grid-area: activity;
+  background: var(--activitybar-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+  gap: 2px;
+  border-right: 1px solid var(--border-secondary);
+}
+
+.navButton {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--activitybar-fg);
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.navButton:hover {
+  color: var(--activitybar-active);
+}
+
+.navButton.active {
+  color: var(--activitybar-active);
+}
+
+.navButton.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--activitybar-indicator);
+}
+
+.spacer {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .activityBar {
+    grid-area: activity;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    border-right: none;
+    border-top: 1px solid var(--border-secondary);
+  }
+
+  .navButton {
+    width: auto;
+    flex: 1;
+    height: var(--activitybar-width);
+  }
+
+  .navButton.active::before {
+    left: 25%;
+    right: 25%;
+    top: 0;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+  }
+
+  .spacer {
+    display: none;
+  }
+}

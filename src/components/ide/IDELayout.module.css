@@ -1,0 +1,46 @@
+.layout {
+  display: grid;
+  grid-template-columns: var(--activitybar-width) var(--sidebar-width) 1fr;
+  grid-template-rows: var(--tab-height) 1fr auto var(--statusbar-height);
+  grid-template-areas:
+    "activity sidebar tabbar"
+    "activity sidebar editor"
+    "activity sidebar terminal"
+    "status   status  status";
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.layout.sidebarCollapsed {
+  grid-template-columns: var(--activitybar-width) 0px 1fr;
+}
+
+/* Responsive: Tablet */
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: var(--activitybar-width) 0px 1fr;
+  }
+
+  .layout.sidebarOpen {
+    grid-template-columns: var(--activitybar-width) var(--sidebar-width) 1fr;
+  }
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--tab-height) 1fr var(--statusbar-height) var(--activitybar-width);
+    grid-template-areas:
+      "tabbar"
+      "editor"
+      "status"
+      "activity";
+  }
+
+  .layout .sidebarArea,
+  .layout .terminalArea {
+    display: none;
+  }
+}
