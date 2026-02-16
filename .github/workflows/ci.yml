@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    uses: MenaceLabs/shared-workflows/.github/workflows/build-and-test.yml@main
+    with:
+      node-version: '20'
+      build-command: 'npm run build'
+      artifact-path: 'dist'
+
+  appsec:
+    uses: MenaceLabs/shared-workflows/.github/workflows/appsec.yml@main
+    with:
+      node-version: '20'
+    secrets: inherit
