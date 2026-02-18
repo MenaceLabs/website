@@ -1,13 +1,13 @@
 ---
-title: "Dev Log: Building a VS Code Portfolio"
+title: "Dev Log: Building a VS Code Homepage"
 date: 2025-02-15
-tags: [react, typescript, css, portfolio]
-description: How I built this IDE-themed portfolio site with React, TypeScript, and Vite.
+tags: [react, typescript, css, homepage]
+description: How I built this IDE-themed homepage site with React, TypeScript, and Vite.
 ---
 
-# Dev Log: Building a VS Code Portfolio
+# Dev Log: Building a VS Code Homepage
 
-I wanted my portfolio to reflect how I actually work — so I built it to look and feel like VS Code.
+I wanted my homepage to reflect how I actually work — so I built it to look and feel like VS Code.
 
 ## Design Decisions
 
@@ -44,3 +44,7 @@ The tab system uses Zustand — a minimal state management library. Open a page,
 - CSS Grid is perfect for complex, fixed layouts
 - Markdown + static generation keeps things simple
 - VS Code's design language is surprisingly adaptable to web
+
+---
+
+Model: Opus 4.6

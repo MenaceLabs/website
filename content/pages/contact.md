@@ -8,10 +8,10 @@ description: Get in touch
 The best ways to reach me:
 
 - **GitHub:** [QuiGonGitt](https://github.com/QuiGonGitt)
-- **Email:** hello@example.com
+- **Email:** N/A
 
 ## Let's Connect
 
 Whether you're interested in collaborating on an AI project, have questions about my work, or just want to say hello — I'd love to hear from you.
 
-> "The best way to predict the future is to build it." — Alan Kay
+> "We do not think ourselves into new ways of living, we live ourselves into new ways of thinking." — Richard Rhor
