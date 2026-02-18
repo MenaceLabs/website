@@ -16,6 +16,10 @@
   grid-template-columns: var(--activitybar-width) 0px 1fr;
 }
 
+.editorContent {
+  padding: 1.5em 2em;
+}
+
 /* Responsive: Tablet */
 @media (max-width: 1024px) {
   .layout {
@@ -42,5 +46,9 @@
   .layout .sidebarArea,
   .layout .terminalArea {
     display: none;
+  }
+
+  .editorContent {
+    padding: 1em 1em;
   }
 }

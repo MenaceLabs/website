@@ -18,7 +18,7 @@ export function IDELayout() {
       <Sidebar isOpen={sidebarOpen} />
       <TabBar />
       <main style={{ gridArea: 'editor', overflow: 'auto', background: 'var(--editor-bg)' }}>
-        <div className="editor-content" style={{ padding: '1.5em 2em' }}>
+        <div className={`editor-content ${styles.editorContent}`}>
           <Outlet />
         </div>
       </main>

@@ -22,7 +22,7 @@ export function StatusBar() {
         <span>QuiGonGitt</span>
       </a>
 
-      <span className={styles.statusItem}>
+      <span className={`${styles.statusItem} ${styles.hideOnMobile}`}>
         <GitBranch size={14} />
         <span>main</span>
       </span>
@@ -33,11 +33,11 @@ export function StatusBar() {
         {currentFile}
       </span>
 
-      <span className={styles.statusItem}>
+      <span className={`${styles.statusItem} ${styles.hideOnMobile}`}>
         UTF-8
       </span>
 
-      <span className={styles.statusItem}>
+      <span className={`${styles.statusItem} ${styles.hideOnMobile}`}>
         Markdown
       </span>
     </div>

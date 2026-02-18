@@ -34,4 +34,8 @@
     font-size: 11px;
     padding: 0 6px;
   }
+
+  .hideOnMobile {
+    display: none;
+  }
 }

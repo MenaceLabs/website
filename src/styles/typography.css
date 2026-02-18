@@ -121,3 +121,24 @@ code, pre, .mono {
   background: var(--bg-secondary);
   font-weight: 600;
 }
+
+@media (max-width: 768px) {
+  .editor-content h1 {
+    font-size: 1.5em;
+  }
+
+  .editor-content pre {
+    overflow-x: auto;
+    font-size: 12px;
+  }
+
+  .editor-content table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .editor-content ul,
+  .editor-content ol {
+    padding-left: 1.2em;
+  }
+}

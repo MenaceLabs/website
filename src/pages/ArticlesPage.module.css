@@ -55,3 +55,9 @@
   font-size: 11px;
   font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
 }
+
+@media (max-width: 768px) {
+  .articleItem {
+    padding: 12px 14px;
+  }
+}
