@@ -7,11 +7,13 @@ status: in-progress
 repo: https://github.com/MenaceLabs/shared-workflows
 ---
 
-## Human Abstract
+## Premise
+
+### Human Abstract
 
 I wanted a zero-cost application security pipeline that can run within my SCM and autonomously assess my code as I continue to rapidly develop.
 
-## Claude Speaking
+### Claude Speaking
 
 The project is a set of reusable GitHub Actions workflows designed to be called from any repository in the organization. Rather than duplicating CI and security configuration across every repo, each project references these shared workflows with minimal configuration.
 

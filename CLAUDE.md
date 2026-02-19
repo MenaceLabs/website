@@ -63,8 +63,8 @@ repo: https://github.com/user/repo  # optional, for complete/in-progress project
 
 Projects follow a narrative arc from idea to shipped product:
 
-1. **Premise** (always present): The opening section of the project page. Describes the idea, motivation, and planned approach.
-2. **Progress updates** (added over time): Use `## Update N (YYYY-MM-DD)` sections to document milestones, decisions, and progress.
+1. **Premise** (`## Premise`): Always present. The opening section with `### Human Abstract` and `### Claude Speaking` nested under it.
+2. **Progress updates** (added over time): Use `## Update N (YYYY-MM-DD) — ~duration` sections. Always include approximate time spent. Separate from the premise and from each other with `---` dividers.
 3. **Outcome** (added at completion): Use a `## Result` section to document the final state, lessons learned, and link to the repo.
 
 When a project's status changes, update the `status` field in frontmatter. Add the `repo` field when the repository goes public.
@@ -74,7 +74,7 @@ When a project's status changes, update the `status` field in frontmatter. Add t
 ### AI Transparency
 
 - AI-written sections use a `## Claude Speaking` header (or the appropriate model name, e.g. `## Gemini Speaking`).
-- Human-written sections use a `## Human Abstract` header. These sections are always 100% human-written, without AI assistance or formatting.
+- Human-written sections use a `## Human Abstract` header. These sections are always 100% human-written, without AI assistance or formatting. NEVER add, edit, rewrite, or expand text in a Human Abstract section. Only use the user's exact words.
 - All AI-assisted pages end with `Model: <model name>` on the last line (e.g. `Model: Opus 4.6`).
 
 ### Style
