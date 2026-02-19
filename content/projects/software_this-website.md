@@ -65,4 +65,37 @@ The tab system uses Zustand, a minimal state management library. Open a page, an
 - Markdown + static generation keeps things simple
 - VS Code's design language is surprisingly adaptable to web
 
+---
+
+## Update 2 (2026-02-19) — ~45 minutes (estimate)
+
+Major content and structural pass on the site. The projects section got a full rework, content conventions were formalized, and the repo went public.
+
+### Project Narrative System
+
+Projects now follow a premise-to-completion arc tracked by a `status` frontmatter field (`premise`, `in-progress`, `complete`). The projects page groups entries by status with section headings, and each project card displays a color-coded badge:
+
+- **Premise** (yellow) for ideas taking shape
+- **In Progress** (blue) for active work
+- **Complete** (green) for shipped projects
+
+Project detail pages now show a meta line with date, status, tags, and an optional GitHub repo link.
+
+### Content Structure
+
+Established a standard layout for project pages: a `## Premise` section at the top (containing `### Human Abstract` and `### Claude Speaking`), followed by sequentially numbered `## Update N` sections separated by horizontal rules. Each update includes an approximate duration.
+
+Updated `CLAUDE.md` to document these conventions, including a strict rule that Human Abstract sections contain only the user's exact words.
+
+### Repository Cleanup
+
+Removed placeholder repos (`ai-shepherd-toolkit`, `llm-eval-harness`) from the GitHub Repositories section. The site repo was renamed from `ide-portfolio` to `website` and linked to its actual location at `MenaceLabs/website`. The repo was made public.
+
+### First Project Pages
+
+Created three project pages:
+- **This Website** (this page) with the original dev log folded in as Update 1
+- **Shared Workflows** documenting the reusable CI/AppSec pipeline
+- **Cloudflare Hardening** tracking the infrastructure audit and remediation
+
 Model: Opus 4.6
