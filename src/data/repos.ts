@@ -2,12 +2,17 @@ import type { RepoData } from '@/components/content/RepoCard'
 
 export const repos: RepoData[] = [
   {
-    name: 'this-website',
+    name: 'website',
     description: 'This portfolio site — a VS Code-themed personal website built with React, TypeScript, and Vite.',
-    url: 'https://github.com/QuiGonGitt/this-website',
+    url: 'https://github.com/MenaceLabs/website',
     language: 'TypeScript',
     languageColor: '#3178c6',
-    stars: 15,
-    forks: 3,
+  },
+  {
+    name: 'shared-workflows',
+    description: 'Reusable GitHub Actions workflows for CI and application security scanning.',
+    url: 'https://github.com/MenaceLabs/shared-workflows',
+    language: 'YAML',
+    languageColor: '#cb171e',
   },
 ]
