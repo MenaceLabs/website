@@ -1,0 +1,33 @@
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--bg-tertiary, var(--bg-secondary));
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.text {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.dismiss:hover {
+  color: var(--text-primary);
+}

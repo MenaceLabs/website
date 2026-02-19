@@ -1,0 +1,39 @@
+.overlay {
+  position: fixed;
+  top: 48px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  background: none;
+  border: none;
+  border-left: 3px solid transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.navItem:hover {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+.navItem.active {
+  color: var(--text-primary);
+  border-left-color: var(--syntax-keyword);
+}

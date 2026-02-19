@@ -5,32 +5,44 @@ import { Sidebar } from './Sidebar'
 import { TabBar } from './TabBar'
 import { Terminal } from './Terminal'
 import { StatusBar } from './StatusBar'
+import { useIsMobile } from '../../hooks/useIsMobile'
+import { MobileHeader } from '../mobile/MobileHeader'
+import { MobileBanner } from '../mobile/MobileBanner'
 import styles from './IDELayout.module.css'
 
-const MOBILE_BREAKPOINT = 768
-
-function isMobile() {
-  return window.innerWidth <= MOBILE_BREAKPOINT
-}
-
 export function IDELayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(() => !isMobile())
+  const isMobile = useIsMobile()
+  const [sidebarOpen, setSidebarOpen] = useState(() => !isMobile)
   const location = useLocation()
 
   // Close sidebar on navigation when on mobile
   useEffect(() => {
-    if (isMobile()) {
+    if (isMobile) {
       setSidebarOpen(false)
     }
-  }, [location.pathname])
+  }, [location.pathname, isMobile])
 
   const toggleSidebar = useCallback(() => setSidebarOpen(prev => !prev), [])
   const closeSidebar = useCallback(() => setSidebarOpen(false), [])
 
+  if (isMobile) {
+    return (
+      <div className={styles.mobileLayout}>
+        <MobileHeader />
+        <MobileBanner />
+        <main className={styles.mobileContent}>
+          <div className="editor-content">
+            <Outlet />
+          </div>
+        </main>
+      </div>
+    )
+  }
+
   return (
     <div className={`${styles.layout} ${!sidebarOpen ? styles.sidebarCollapsed : ''}`}>
       <ActivityBar onToggleSidebar={toggleSidebar} />
-      {sidebarOpen && isMobile() && (
+      {sidebarOpen && (
         <div className={styles.sidebarBackdrop} onClick={closeSidebar} />
       )}
       <Sidebar isOpen={sidebarOpen} />

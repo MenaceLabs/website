@@ -98,4 +98,29 @@ Created three project pages:
 - **Shared Workflows** documenting the reusable CI/AppSec pipeline
 - **Cloudflare Hardening** tracking the infrastructure audit and remediation
 
+---
+
+## Update 3 (2026-02-19) — ~20 minutes
+
+Added a dedicated mobile reader view. Instead of forcing the IDE layout onto small screens, the site now serves a minimal reading experience on viewports 768px and below. Desktop is completely unchanged.
+
+### Mobile Reader View
+
+The `IDELayout` component now uses a reactive `useIsMobile` hook (backed by `matchMedia`) and early-returns a different layout on mobile. All IDE chrome is gone: no activity bar, sidebar, tab bar, terminal, or status bar. What renders instead:
+
+- **MobileHeader**: a 48px bar with the `~/portfolio` site name (links home) and a hamburger toggle
+- **MobileNav**: a fullscreen overlay with the same five nav items as the desktop activity bar, including active-page highlighting with a left border accent
+- **MobileBanner**: a dismissible "visit on desktop for the full experience" notice, persisted via localStorage so it only appears once
+- **Content area**: full-width, scrollable, with the same typography and dark theme as desktop
+
+### What Changed
+
+Seven new files (hook, three components, three CSS modules) and two modified files (`IDELayout.tsx` and its CSS module). The old mobile media queries that tried to restructure the CSS Grid were replaced entirely, since the mobile path now renders different components altogether.
+
+### Takeaways
+
+- Serving a completely different layout is cleaner than bending a complex grid into a mobile shape
+- `matchMedia` with a `change` listener is more efficient than polling `window.innerWidth` on resize
+- Keeping the same nav items and active-page logic between desktop and mobile ensures consistent behavior
+
 Model: Opus 4.6
