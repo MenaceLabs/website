@@ -58,12 +58,14 @@
 
 @media (max-width: 768px) {
   .sidebar {
+    grid-area: unset;
     position: fixed;
     top: 0;
     left: 0;
     width: 80vw;
     max-width: 300px;
     height: calc(100vh - var(--activitybar-width) - var(--statusbar-height));
+    height: calc(100dvh - var(--activitybar-width) - var(--statusbar-height));
     z-index: 100;
     box-shadow: 4px 0 16px rgba(0, 0, 0, 0.3);
   }
