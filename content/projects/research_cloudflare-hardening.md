@@ -103,4 +103,32 @@ Fingerprinted assets under `/assets/*` now serve with `Cache-Control: public, ma
 - API token still over-scoped
 - No automated deploy pipeline (still using ad-hoc CLI pushes)
 
+---
+
+## Update 3 (2026-02-19) — ~10 minutes
+
+Tackled the two remaining actionable items: WAF managed rulesets and automated deploys.
+
+### WAF Managed Rulesets
+
+The API token lacks permission to manage rulesets. The free managed ruleset and DDoS L7 protection are already present on the zone but need to be toggled on via the Cloudflare dashboard at **Security > WAF > Managed Rules**. This is a manual step.
+
+### Automated Deploy Pipeline
+
+Added a `deploy` job to the CI workflow (`.github/workflows/ci.yml`). The pipeline now runs on every push to `main`:
+
+1. **Build** - installs, builds, uploads `dist` as artifact
+2. **AppSec** - runs all four security checks in parallel
+3. **Deploy** - downloads the build artifact and deploys to Cloudflare Pages via `wrangler-action`
+
+The deploy job uses two repository secrets (`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`) set via the GitHub CLI. CI also now triggers on push to main (previously `workflow_dispatch` only).
+
+First automated deploy completed successfully in 34 seconds.
+
+### Updated Outstanding Items
+
+- WAF managed rulesets (manual dashboard toggle)
+- Custom domain not configured
+- API token still over-scoped (separate deploy-only token recommended)
+
 Model: Opus 4.6
