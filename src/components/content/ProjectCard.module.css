@@ -12,11 +12,41 @@
   transform: translateY(-2px);
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
 .title {
   color: var(--text-link);
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 8px;
+}
+
+.badge {
+  font-size: 11px;
+  font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.premise {
+  color: var(--syntax-function);
+  background: color-mix(in srgb, var(--syntax-function) 20%, transparent);
+}
+
+.in-progress {
+  color: var(--syntax-keyword);
+  background: color-mix(in srgb, var(--syntax-keyword) 20%, transparent);
+}
+
+.complete {
+  color: var(--syntax-comment);
+  background: color-mix(in srgb, var(--syntax-comment) 20%, transparent);
 }
 
 .description {

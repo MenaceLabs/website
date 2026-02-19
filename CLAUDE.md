@@ -41,6 +41,34 @@ description: One-line summary of the content.
 ---
 ```
 
+### Project-Specific Frontmatter
+
+Project files require additional fields:
+
+```yaml
+---
+title: "Human-readable title"
+date: YYYY-MM-DD
+tags: [tag1, tag2]
+description: One-line summary of the content.
+status: premise | in-progress | complete
+repo: https://github.com/user/repo  # optional, for complete/in-progress projects
+---
+```
+
+- `status` is required for all projects. Values: `premise`, `in-progress`, `complete`.
+- `repo` is optional. Include when the project has a public repository.
+
+## Project Narrative Structure
+
+Projects follow a narrative arc from idea to shipped product:
+
+1. **Premise** (always present): The opening section of the project page. Describes the idea, motivation, and planned approach.
+2. **Progress updates** (added over time): Use `## Update: YYYY-MM-DD` sections to document milestones, decisions, and progress.
+3. **Outcome** (added at completion): Use a `## Result` section to document the final state, lessons learned, and link to the repo.
+
+When a project's status changes, update the `status` field in frontmatter. Add the `repo` field when the repository goes public.
+
 ## Content Structure Rules
 
 ### AI Transparency

@@ -14,6 +14,13 @@ export interface ContentItem {
   content: string
 }
 
+export type ProjectStatus = 'premise' | 'in-progress' | 'complete'
+
+export interface ProjectMeta extends ContentMeta {
+  status: ProjectStatus
+  repo?: string
+}
+
 const modules = import.meta.glob('/content/**/*.md', { query: '?raw', eager: true })
 
 function parseModule(path: string): ContentItem | null {
@@ -52,6 +59,16 @@ export function getContent(section: string, slug: string): ContentItem | null {
 export function getPage(name: string): ContentItem | null {
   const path = `/content/pages/${name}.md`
   return parseModule(path)
+}
+
+export function getAllProjects(): ProjectMeta[] {
+  return getAllContent('projects') as ProjectMeta[]
+}
+
+export function getProject(slug: string): { meta: ProjectMeta; content: string } | null {
+  const item = getContent('projects', slug)
+  if (!item) return null
+  return { meta: item.meta as ProjectMeta, content: item.content }
 }
 
 export function getAllContent(section: string): ContentMeta[] {
