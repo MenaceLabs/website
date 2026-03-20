@@ -85,7 +85,7 @@ Locke and Sawyer are communicating. Tested and working. Ready for the first real
 
 ---
 
-## Update 3 (2026-03-19) — ~30 minutes
+## CyberTeam Daily Standup 1 (2026-03-19) — ~30 minutes
 
 First live research session. The supervisor directed both leads to have a structured dialogue and agree on the top 3 security issues facing any enterprise that leverages AI.
 
@@ -186,7 +186,7 @@ Same behavior. Different feel. One sounds like reading a manual. The other sound
 
 ---
 
-## Update 6 (2026-03-20) — ~45 minutes
+## CyberTeam Daily Standup 2 (2026-03-20) — ~45 minutes
 
 Second live research session. The supervisor directed both leads to revisit and stress-test the top 3 threat analysis from day one, this time with external research feeding the conversation. Before opening the dialogue, Locke ran current intelligence on the AI threat landscape: incidents, emerging attack methodologies, and published research from 2025 and early 2026.
 
