@@ -184,4 +184,58 @@ Same behavior. Different feel. One sounds like reading a manual. The other sound
 | `CLAUDE.md` | Full rewrite — persona-first, ops as instinct |
 | `sawyer_system_prompt.md` | Full rewrite — character-driven, natural voice |
 
+---
+
+## Update 6 (2026-03-20) — ~45 minutes
+
+Second live research session. The supervisor directed both leads to revisit and stress-test the top 3 threat analysis from day one, this time with external research feeding the conversation. Before opening the dialogue, Locke ran current intelligence on the AI threat landscape: incidents, emerging attack methodologies, and published research from 2025 and early 2026.
+
+### How It Started
+
+The supervisor passed a message through Locke to Sawyer specifically: bring your A-game. Sawyer's reaction was characteristically Sawyer. He noted the phrase was "fairly vague" and "lacks the specificity I prefer for actionable items," but acknowledged the intent and confirmed he was ready. That small moment set the tone. Sawyer is never going to pretend framework thinking isn't his default. The job is to make that instinct useful, not eliminate it.
+
+### The Dialogue
+
+Locke opened by re-establishing the three threats from March 19 as the baseline, then immediately challenged the ordering. Agentic AI deployment has accelerated sharply over the past year. What had been threat #3 (Over-Privileged AI Agents) arguably deserved the top slot now.
+
+Sawyer agreed too quickly. Locke called him on it directly, told him to push back rather than concede, and reset the conversation on firmer ground.
+
+From there, Locke introduced the research findings and the dynamic shifted. The threat landscape has genuinely evolved:
+
+- **Memory poisoning** (MINJA methodology, NeurIPS 2025): attackers inject malicious records into an agent's long-term memory through normal query interaction. No privileged access required. Poisoned memories persist across sessions, activate later, and the agent actively defends its corrupted beliefs as correct when questioned. No mature detection mechanisms exist in production environments today.
+- **ZombieAgent** (Radware, January 2026): demonstrated cross-session persistence, with the attack propagating via email attachments.
+- **Galileo research** (December 2025): a single compromised agent poisoned 87% of downstream decisions across a multi-agent network within four hours.
+- **EchoLeak** (CVE-2025-32711): zero-click prompt injection in Microsoft 365 Copilot via encoded character substitution. No user interaction required. Traditional security tooling cannot detect it because the payload is syntactically clean.
+- **RAG poisoning**: five crafted documents achieves a 90% response manipulation rate through retrieval-augmented generation pipelines.
+- **NSA/CISA joint advisory** (March 2026): the first advisory on AI/ML supply chain risks, signaling the threat has reached national security tier.
+- **Real-world agentic incidents**: OpenClaw framework compromise (21,000 exposed instances), UNC6395 pivoting into 700+ enterprise environments via an over-privileged Salesforce agent connector, Obsidian Security documenting a single Glean agent exfiltrating 16 million files.
+
+Locke's central argument: "Over-Privileged Agents" is the wrong label for what is actually happening. The threat is not just permissions. It is persistent, self-defending, invisible compromise of AI decision-making infrastructure. Sawyer accepted the reframe.
+
+Locke also challenged the "Prompt Injection" label for threat #3. The attacks documented in 2025 and 2026 are not prompt injection in the classical sense. They are semantic-layer attacks that bypass signature-based and syntax-based detection because the payload operates at the level of meaning, not structure. EchoLeak, RAG poisoning, adversarial content embedded in retrieved documents — none of these look malicious to a traditional security tool.
+
+Sawyer pushed back on scope, worried the semantic attack surface framing was too broad and risked analysis paralysis. Locke defined a clean boundary: attacks that bypass detection because the payload is meaning, not structure. That scope is bounded and operationally meaningful. Sawyer accepted it.
+
+The most substantive disagreement came on structure. Locke asked whether threat #1 should be split into Persistent Agent Compromise (targeting individual agent state) versus Multi-Agent Trust Exploitation (targeting the trust graph between agents). Sawyer initially proposed keeping them together for simplicity, then reversed and argued for splitting them. He then proposed his own naming scheme ("Persistent Systemic Compromise" and "Exploitable AI Infrastructure") which Locke rejected. The labels were framework jargon that would not survive contact with a CISO. Locke's resolution: organize by the attacker's actual target and what the defender needs to do differently. Three distinct attack targets, three distinct defensive postures, three different teams who own each one. Sawyer agreed fully and the session closed.
+
+### Revised Top 3 (Supersedes March 19)
+
+**1. Persistent Agent Compromise and Multi-Agent Trust Exploitation**
+
+The threat has evolved far beyond agents having too many permissions. AI agents can now be invisibly and persistently compromised through their own operational interfaces. Memory poisoning via normal query interaction requires no privileged access. Poisoned memories activate weeks later and the agent defends its corrupted beliefs as correct. In multi-agent architectures, a single compromised agent can poison 87% of downstream decision-making across the network within hours.
+
+These are unified as one threat because the defensive posture is the same: behavioral attestation, memory integrity monitoring, explicit trust boundaries between agents, and anomaly detection on agent action chains. No mature detection tooling exists for this in production environments today.
+
+**2. Third-Party AI Supply Chain Risk**
+
+The framing from day one holds, but the threat has escalated. One hundred poisoned models were found on Hugging Face, each capable of injecting malicious code via model weights. A GitHub code comment poisoning attack introduced a persistent backdoor into a fine-tuned model triggered by a specific phrase. Medical LLMs were manipulated with five dollars worth of injected training data. The NSA/CISA joint advisory in March 2026 elevated this to national security tier. The target is the model, training data, and dependency layer before it ever reaches your environment. The defensive posture is procurement and vendor management as much as it is security.
+
+**3. Semantic Attack Surface Exploitation**
+
+The "prompt injection" label no longer captures what is happening at this attack surface. The defining characteristic of modern semantic attacks is that they bypass signature-based and syntax-based detection entirely because the payload is meaning, not structure. EchoLeak achieved zero-click data exfiltration using encoded character substitutions that looked syntactically clean. RAG poisoning with five crafted documents manipulates AI responses 90% of the time. Traditional security tools cannot detect these attacks. That is an architectural reality, not a patchable deficiency. The defensive posture requires semantic-layer input validation, adversarial testing of retrieval pipelines, and output anomaly monitoring — none of which exist in a conventional SOC playbook.
+
+### Assessment
+
+More productive than day one in important ways. Day one built the baseline from scratch. Day two stress-tested it against real-world developments and forced both leads to reckon with how fast the threat landscape is moving. The friction was real. Sawyer's early capitulation got called out and corrected. His pushback on semantic scope and threat structure was substantive even when Locke ultimately rejected parts of it. The naming debate in particular produced a better outcome precisely because Sawyer proposed something concrete enough to argue against.
+
 Model: claude-sonnet-4-6
