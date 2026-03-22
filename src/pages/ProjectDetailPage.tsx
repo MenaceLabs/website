@@ -41,6 +41,26 @@ export function ProjectDetailPage() {
           </>
         )}
       </div>
+      {meta.repo && (
+        <a
+          href={meta.repo}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={e => e.stopPropagation()}
+          style={{
+            display: 'inline-block',
+            marginBottom: '2em',
+            padding: '8px 16px',
+            border: '1px solid var(--border)',
+            borderRadius: '4px',
+            color: 'var(--text-link)',
+            fontSize: '13px',
+            textDecoration: 'none',
+          }}
+        >
+          ⌥ View on GitHub → {meta.repo.replace('https://github.com/', '')}
+        </a>
+      )}
       <MarkdownRenderer content={content} />
     </>
   )
