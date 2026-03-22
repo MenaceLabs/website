@@ -238,4 +238,15 @@ The "prompt injection" label no longer captures what is happening at this attack
 
 More productive than day one in important ways. Day one built the baseline from scratch. Day two stress-tested it against real-world developments and forced both leads to reckon with how fast the threat landscape is moving. The friction was real. Sawyer's early capitulation got called out and corrected. His pushback on semantic scope and threat structure was substantive even when Locke ultimately rejected parts of it. The naming debate in particular produced a better outcome precisely because Sawyer proposed something concrete enough to argue against.
 
+---
+
+## What This Started
+
+The cyberteam proved the concept. Two agents with distinct identities, a shared memory system, and a human supervisor produced genuinely better analytical output than either model would have reached alone. That result had implications beyond cybersecurity.
+
+The communication layer and memory architecture built for this team were extracted into a standalone reusable framework, and a second team was stood up to apply the same model to software development.
+
+- [Agent Team Framework](/projects/ai_agent-team-framework) — the generalized template extracted from this project, published as an open-source repo
+- [Innovation Team](/projects/ai_innovationteam) — a dev-focused AI team (Stewie + Brian) built on the same bones
+
 Model: claude-sonnet-4-6
