@@ -3,7 +3,7 @@ title: "Memory MCP Server"
 date: 2026-03-23
 tags: [ai, mcp, memory, python, sqlite, embeddings, ollama, agents]
 description: A semantic memory server for AI agents that stores and retrieves memories via embeddings, keeping the context window clean as agent knowledge scales.
-status: complete
+status: in-progress
 repo: https://github.com/MenaceLabs/mcp_memory_server
 ---
 
