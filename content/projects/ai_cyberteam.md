@@ -240,6 +240,16 @@ More productive than day one in important ways. Day one built the baseline from 
 
 ---
 
+## Update 6 (2026-03-23) — ~15 minutes
+
+A gap in Locke's memory surfaced at the start of a new session. The conversation log was capturing Locke-Sawyer exchanges, but nothing was persisting from Locke's direct sessions with the supervisor. Every new session started cold.
+
+The fix: `locke_memory.md`, a dedicated memory file Locke reads at the start of every session and updates in real time as the supervisor shares decisions, context, or anything worth remembering. Not at the end of the session. When it happens.
+
+The same fix was applied across the initiative. Stewie received `stewie_memory.md` in the innovationteam directory. The agent-team-template was updated and pushed to GitHub with `agent1_memory.md` as the standard pattern going forward.
+
+---
+
 ## What This Started
 
 The cyberteam proved the concept. Two agents with distinct identities, a shared memory system, and a human supervisor produced genuinely better analytical output than either model would have reached alone. That result had implications beyond cybersecurity.

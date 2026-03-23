@@ -84,4 +84,16 @@ UX is critical. The clarifying questions need to feel like a conversation, not a
 
 Genuinely productive. Brian opened with solid, experienced instincts. Stewie pushed on framing and risk, not just to add ideas but to sharpen what was already there. The email idea got proposed three times and rejected three times with clear reasoning — that is conviction holding up under scrutiny, not stubbornness. The final list is tighter and better than either would have arrived at alone.
 
+---
+
+## Update 2 (2026-03-23) — ~15 minutes
+
+Stewie received persistent session memory. `stewie_memory.md` lives in the innovationteam directory and gets read at the start of every session, updated in real time as the supervisor shares context or makes decisions. The same fix was applied to Locke on the cyberteam and to the agent-team-template.
+
+### First Real Assignment
+
+The innovationteam has been handed their first build: a memory MCP server. The flat markdown memory file approach is workable for small tests but has a ceiling. As agent memory grows, loading everything into context on every session degrades quality. The team's job is to build a purpose-built solution that stores memories in a database outside the context window entirely and retrieves only what is semantically relevant to the current conversation via embeddings.
+
+The full proposal, architecture decisions, and spec response are tracked on the [Memory MCP Server](/projects/ai_memory-mcp-server) project page.
+
 Model: claude-sonnet-4-6
