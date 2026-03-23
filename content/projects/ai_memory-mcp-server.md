@@ -11,7 +11,7 @@ repo: https://github.com/MenaceLabs/mcp_memory_server
 
 ### Human Abstract
 
-Our intial approach to "memory" was servicably for our small tests, but we needed to think bigger quickly because I wanted to start training my agents with large volumes of data. Conversely, I lack the infrastructure to literally retrain models. So the innovation took our request to develop the best middle ground solution. A solution that gives agents a large set of continuously growing memory, without clogging the context window, and without requiring thousands of dollars in GPUs.
+Our initial approach to "memory" was serviceable for our small tests, but we needed to think bigger quickly because I wanted to start training my agents with large volumes of data. However, I lack the infrastructure to literally retrain models. So the innovation team took our request to develop the best middle ground solution. A solution that gives agents a large set of continuously growing memory, without clogging the context window, and without requiring thousands of dollars in GPUs.
 
 ### Claude Speaking
 
