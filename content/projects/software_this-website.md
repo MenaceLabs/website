@@ -123,4 +123,29 @@ Seven new files (hook, three components, three CSS modules) and two modified fil
 - `matchMedia` with a `change` listener is more efficient than polling `window.innerWidth` on resize
 - Keeping the same nav items and active-page logic between desktop and mobile ensures consistent behavior
 
+---
+
+## Update 4 (2026-03-23) — ~1 hour
+
+Content and UI pass focused on the projects section. Four new project pages were added documenting the AI initiative, and a small but visible UI improvement was made to project detail pages.
+
+### New Project Pages
+
+Four pages added to document the AI agent initiative as it grew:
+
+- **AI Cyberteam** — the original two-agent security research team (Locke + Sawyer), including setup, memory system, and daily standups
+- **Agent Team Framework** — the reusable template extracted from the cyberteam and published as a public repo
+- **Innovation Team** — the second team (Stewie + Brian), stood up on the framework and tasked with software builds
+- **Memory MCP Server** — the innovationteam's first real build: a semantic memory server for AI agents
+
+### GitHub Repo Callout
+
+Project detail pages now render a styled link button below the meta line for any project with a `repo` field in its frontmatter. Previously the only repo indicator was a small inline link tucked into the date/status/tags line — easy to miss. The new button is visually distinct and includes the repo path.
+
+The change is in `ProjectDetailPage.tsx` and applies automatically to all projects with a repo link, including this one and the Cloudflare Hardening page.
+
+### Browser Tab Title
+
+Fixed the browser tab title from the default `my_site` placeholder to `jinntech` in `index.html`.
+
 Model: Opus 4.6
