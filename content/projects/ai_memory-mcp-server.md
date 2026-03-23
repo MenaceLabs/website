@@ -3,7 +3,8 @@ title: "Memory MCP Server"
 date: 2026-03-23
 tags: [ai, mcp, memory, python, sqlite, embeddings, ollama, agents]
 description: A semantic memory server for AI agents that stores and retrieves memories via embeddings, keeping the context window clean as agent knowledge scales.
-status: in-progress
+status: complete
+repo: https://github.com/MenaceLabs/mcp_memory_server
 ---
 
 ## Premise
@@ -75,5 +76,69 @@ The innovationteam reviewed the proposal and responded with a full technical spe
 ### Open Question
 
 The `register_agent.py` CLI script means manual onboarding for every new agent. First-run auto-registration may be viable and would make the framework significantly more frictionless for new teams. Raised with the innovationteam for consideration during build.
+
+---
+
+## Update 3 (2026-03-23) — ~2 hours
+
+The innovationteam shipped the full server in a single session. Proposal reviewed, architecture locked, environment stood up, server built, end-to-end tested, and published to GitHub.
+
+### Environment
+
+- Python 3.13 present. pip not available (Ubuntu no longer ships it by default). `uv` installed as the package manager.
+- `nomic-embed-text` pulled via Ollama. Confirmed working at 768 dimensions.
+- `gemma3:12b` confirmed as chat-only — does not support embeddings.
+- Project directory created at `/home/mstacy/git/memory-mcp-server`.
+
+### What Was Built
+
+**`memory_server.py`** — the full MCP server. Six tools exposed:
+
+| Tool | What it does |
+|------|-------------|
+| `memory_register` | Registers an agent, issues a hashed API key, optionally writes credentials to `.env` automatically |
+| `memory_store` | Saves a memory with scope, tags, embedding, and conflict detection |
+| `memory_retrieve` | Semantic retrieval via cosine similarity, returns ranked results with conflict flags |
+| `memory_update` | Creator-only update, re-embeds content, clears conflict flags |
+| `memory_delete` | Creator-only delete |
+| `memory_list` | Filtered listing by scope and/or tags |
+
+**`register_agent.py`** — admin CLI for manual agent provisioning when auto-registration is disabled.
+
+**`SETUP.md`** — complete setup guide: installation, registration modes, tool reference, configuration, CLAUDE.md migration instructions, and security notes.
+
+**`pyproject.toml`** and **`uv.lock`** — locked dependencies (`mcp[cli]`, `numpy`).
+
+### Key Design Decisions
+
+| Decision | What shipped | Why |
+|----------|-------------|-----|
+| Embeddings | Ollama `nomic-embed-text`, abstracted behind one function | Stack consistency, swappable backend without touching the rest |
+| Auth | SHA-256 hashed API keys | Agents cannot spoof identity |
+| Registration | Auto (default) + manual CLI | Frictionless for new teams, controlled for admins |
+| Credential storage | Auto-written to `.env` on registration | No manual key handling after first run |
+| Conflict handling | Store both versions, flag in retrieval, configurable TTL | No silent data loss |
+| Scoping | Agent-private + team-shared, one server | Clean isolation, minimal ops overhead |
+| Retrieval | Server-side embedding, plain-text query in | Agents never need to know about vectors |
+
+### End-to-End Test
+
+The supervisor tested the server himself in a live fresh session:
+
+1. Registered a new agent (`cloudflare_engineer_test`, team `cloudflare`) — key issued successfully
+2. Stored a conversation as a memory mid-session
+3. Closed the session, opened a brand new one
+4. Retrieved the memory with no prior context
+
+The core proof of concept passed.
+
+### Published
+
+Repo cleaned (no `memory.db`, no `.env`, no internal data), documented, and pushed public. Registered globally in Claude Code via `claude mcp add`.
+
+### What's Next
+
+- Update cyberteam and innovationteam `CLAUDE.md` files to replace flat markdown memory instructions with MCP tool calls (pending supervisor approval)
+- Contribute the server back to the `agent-team-framework` repo as referenced in the original proposal
 
 Model: claude-sonnet-4-6

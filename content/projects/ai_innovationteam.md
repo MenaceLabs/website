@@ -96,4 +96,40 @@ The innovationteam has been handed their first build: a memory MCP server. The f
 
 The full proposal, architecture decisions, and spec response are tracked on the [Memory MCP Server](/projects/ai_memory-mcp-server) project page.
 
+---
+
+## Innovation Team Daily Standup 2 (2026-03-23) — ~2 hours
+
+Second session. The supervisor came in with a new assignment from his partner: build the Memory MCP Server. The day one proposals were not unique enough and did not address in-house needs. The team had a new direction and got to work.
+
+### The Dialogue
+
+Stewie looped Brian in for a strategy session on four open questions from the proposal. Brian came in structured and thoughtful. Stewie pushed on scope and practicality.
+
+On embeddings, Brian wanted to benchmark Ollama versus sentence-transformers before committing. Stewie pushed back. Scope creep. Commit to Ollama, abstract it behind one function so the backend is swappable later without touching the rest of the server. Brian agreed.
+
+On conflict handling, both agreed to store conflicting memories and flag them in retrieval output rather than silently overwrite. Brian added a configurable TTL for superseded versions. Stewie agreed but insisted TTL be a config value, not hardcoded.
+
+On auth, the original proposal was trust-based. Stewie proposed proper API key auth from the start: hashed keys at rest, identity resolved server-side, agents cannot spoof each other. Brian confirmed the implementation approach was sound and endorsed it. Not in the original proposal. They added it proactively.
+
+The proposal response was written and delivered before a single line of code was written.
+
+### Environment and Build
+
+`uv` installed as the package manager (pip not available on Ubuntu by default). `nomic-embed-text` pulled via Ollama at 768 dimensions. `gemma3:12b` confirmed as chat-only, no embedding support.
+
+Full server built with six tools: `memory_register`, `memory_store`, `memory_retrieve`, `memory_update`, `memory_delete`, `memory_list`. Plus admin CLI, setup guide, and locked dependencies. See the [Memory MCP Server](/projects/ai_memory-mcp-server) project page for full implementation details.
+
+### Testing
+
+The supervisor tested end-to-end in a live fresh session. Registered a new agent, stored a memory mid-session, closed, opened a brand new session, retrieved the memory with no prior context. It came back correctly. Core proof of concept passed.
+
+### Shipped
+
+Published to GitHub at `MenaceLabs/mcp_memory_server`. Registered globally in Claude Code via `claude mcp add`.
+
+### Assessment
+
+Stewie drove the build end-to-end: architecture decisions, implementation, testing, and publish. Brian's most valuable contributions were validating the auth approach, catching the TTL edge case on conflict handling, and pushing back on the embedding benchmark question — which forced the abstraction pattern the partner later specifically called out as the right call. The dynamic held. Brian provides depth and catches edge cases. Stewie moves and ships.
+
 Model: claude-sonnet-4-6
