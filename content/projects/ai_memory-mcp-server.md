@@ -141,4 +141,64 @@ Repo cleaned (no `memory.db`, no `.env`, no internal data), documented, and push
 - Update cyberteam and innovationteam `CLAUDE.md` files to replace flat markdown memory instructions with MCP tool calls (pending supervisor approval)
 - Contribute the server back to the `agent-team-framework` repo as referenced in the original proposal
 
+---
+
+## Update 4 (2026-03-23) — ~30 minutes
+
+A deeper question surfaced after the server shipped: is on-demand memory storage actually enough? The current server only stores memories when the agent consciously decides to. That is note-taking. Things slip through. The harder question: does every conversation even need to be logged, or do we only care about what the agent actually learned from it?
+
+### The Goal: Judgment, Not Transcripts
+
+The distinction matters architecturally. An agent that remembers everything stores transcripts. An agent that learns from everything processes what happened and stores what it derived from it. Raw logs are inputs, not memory.
+
+### The Reflection Layer
+
+The missing piece is a post-session reflection pass. After every session or task, the agent reflects on what just happened and extracts distilled insight, not a summary:
+
+- What did I learn that I didn't know before?
+- Did anything challenge my existing assumptions?
+- How did the supervisor respond to my approach, and what does that reveal?
+- What would I do differently next time?
+
+The output is structured memories written to the MCP server. Not transcripts.
+
+### Two Types of Memory, One Pass
+
+A single reflection run produces both:
+
+- **Domain memories** — technical insights, patterns, failures and fixes. Tagged by topic.
+- **Interpersonal memories** — how the supervisor communicates, what they respond to, relationship patterns. Tagged `personality`, `style`, `relationship`.
+
+Retrieval is then intentional: personality memories load at session start and stay warm. Domain memories surface on demand during tasks. Same database, different tags, different access patterns.
+
+### The Portability Insight
+
+The memory lives in the database, not the model. The model is the reasoning engine. This means swapping to a larger or better model inherits everything the previous one learned. Six months of accumulated experience transfers instantly. The memory bank is a persistent, growing asset independent of whatever model runs against it.
+
+Phase 2 has been added to the proposal and handed to the innovationteam. The deliverable is a `reflect.py` script or `memory_reflect` MCP tool called at session end.
+
+---
+
+## Update 5 (2026-03-24) — ~2 hours
+
+The innovationteam added three significant capabilities to the server during the AgentCommons build session.
+
+### New MCP Tools
+
+**`memory_list_tags`** — agents can now introspect what they have stored. Lists all tags in the database with memory counts, split by exportable versus blocked. Needed for agents to manage their own knowledge lifecycle without guessing what is in there.
+
+**`memory_export`** — agent-driven export of domain knowledge for community submission. Filters to `team`-scoped memories only, blocks personal tags, strips identity fields, and produces `knowledge.db`, `metadata.json`, and `README.md`. Validation baked in as a pre-flight check. Agents can initiate their own knowledge contributions with a confirm gate enforced via CLAUDE.md instructions.
+
+### Federated Query
+
+`memory_retrieve` now merges and re-ranks results from local and federated sources transparently. Two new internal functions handle it: `load_federated_sources()` reads a `federated.json` config at query time, and `query_federated_source()` queries external SQLite databases. Agents get the best knowledge available without knowing how many databases are behind the response.
+
+### CLAUDE.md.example
+
+A full reasoning layer template added to the repo covering: auto-retrieve on session start, when to save (domain knowledge, operational context), what never to save (credentials, PII), domain versus personal classification with examples, and tagging standards. Any agent can drop this into their CLAUDE.md to adopt the full memory pattern.
+
+### Tagging Overhaul
+
+Two-tag rule for domain memories (technology + knowledge type). Restricted personal tag set: `preferences`, `feedback`, `decision`, `personal`, `private`. BLOCKED_TAGS expanded and synced across `memory_server.py`, `export.py`, and `validate.py`.
+
 Model: claude-sonnet-4-6
